@@ -18,7 +18,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-        mongodb db: mongodb
+        MongoDB db: MongoDB
         rabbitmq: rabbitmq
         
     - name: Build with Maven
