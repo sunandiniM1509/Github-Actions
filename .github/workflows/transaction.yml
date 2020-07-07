@@ -3,10 +3,10 @@ name: transaction-managment action
 on:
   push:
     branches: [ master, dev]
-    paths: 'backend/transactionManagement/**'
+    paths: 'financial-goal-tracker/backend/transactionManagement/**'
   pull_request:
     branches: [ master, dev]
-    paths: 'backend/transactionManagement/**'
+    paths: 'financial-goal-tracker/backend/transactionManagement/**'
 
 jobs:
 
@@ -17,7 +17,7 @@ jobs:
       SONAR_PROJECT_NAME: DB1-transactionManagement
       SONAR_HOST_URL:  https://sonarcloud.io
       SONAR_ORGANIZATION: zemoso-int
-      WORKING_DIRECTORY: 'backend/transactionManagement/'
+      WORKING_DIRECTORY: 'financial-goal-tracker/backend/transactionManagement/'
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 8
@@ -28,7 +28,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('backend/transactionManagement/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('financial-goal-tracker/backend/transactionManagement/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build with Maven
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     env:
-      WORKING_DIRECTORY: 'backend/transactionManagement/'
+      WORKING_DIRECTORY: 'financial-goal-tracker/backend/transactionManagement/'
       REGISTRY_GITHUB_LOGIN: 'https://docker.pkg.github.com'
     steps:
     - uses: actions/checkout@v2
@@ -54,7 +54,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('backend/transactionManagement/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('financial-goal-tracker/backend/transactionManagement/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: mvn -B package --file pom.xml
