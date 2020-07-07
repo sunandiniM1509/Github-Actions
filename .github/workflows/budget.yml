@@ -3,10 +3,10 @@ name: budget-managment action
 on:
   push:
     branches: [ master, dev]
-    paths: 'backend/budgetManagement/**'
+    paths: 'financial-goal-tracker/backend/budgetManagement/**'
   pull_request:
     branches: [ master, dev]
-    paths: 'backend/budgetManagement/**'
+    paths: 'financial-goal-tracker/backend/budgetManagement/**'
 
 jobs:
 
@@ -17,7 +17,7 @@ jobs:
       SONAR_PROJECT_NAME: DB1-budgetManagement
       SONAR_HOST_URL:  https://sonarcloud.io
       SONAR_ORGANIZATION: zemoso-int
-      WORKING_DIRECTORY: 'backend/budgetManagement/'
+      WORKING_DIRECTORY: 'financial-goal-tracker/backend/budgetManagement/'
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 8
@@ -28,7 +28,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('backend/budgetManagement/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('financial-goal-tracker/backend/budgetManagement/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build with Maven
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     env:
-      WORKING_DIRECTORY: 'backend/budgetManagement/'
+      WORKING_DIRECTORY: 'financial-goal-tracker/backend/budgetManagement/'
       REGISTRY_GITHUB_LOGIN: 'https://docker.pkg.github.com'
     steps:
     - uses: actions/checkout@v2
@@ -54,7 +54,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('backend/budgetManagement/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('financial-goal-tracker/backend/budgetManagement/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: mvn -B package --file pom.xml
