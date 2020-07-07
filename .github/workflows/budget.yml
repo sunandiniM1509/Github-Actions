@@ -1,5 +1,5 @@
 
-name:budget Management action
+name: budget-managment action
 on:
   push:
     branches: [ master, dev]
